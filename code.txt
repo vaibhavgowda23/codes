@@ -1,0 +1,29 @@
+import random
+import string
+
+def generate_password(length, uppercase=True, lowercase=True, digits=True, symbols=True):
+    chars = ""
+    if uppercase:
+        chars += string.ascii_uppercase
+    if lowercase:
+        chars += string.ascii_lowercase
+    if digits:
+        chars += string.digits
+    if symbols:
+        chars += string.punctuation
+    password = "".join(random.choice(chars) for _ in range(length))
+    return password
+
+def main():
+    num_passwords = int(input("How many passwords do you want to generate? "))
+    password_length = int(input("How long should the passwords be? "))
+    use_uppercase = input("Include uppercase letters? (y/n): ").lower() == "y"
+    use_lowercase = input("Include lowercase letters? (y/n): ").lower() == "y"
+    use_digits = input("Include digits? (y/n): ").lower() == "y"
+    use_symbols = input("Include symbols? (y/n): ").lower() == "y"
+    for i in range(num_passwords):
+        password = generate_password(password_length, use_uppercase, use_lowercase, use_digits, use_symbols)
+        print(password)
+
+if _name_ == "_main_":
+    main()
